@@ -1,0 +1,24 @@
+
+logging:
+  level:
+    br: DEBUG
+    com.desafio: DEBUG
+spring:
+  application:
+    name: desafio-itau
+  profiles:
+    active: dev
+  security:
+    user:
+      password: itau@123
+      name: itau
+
+server:
+  port: 8080
+
+  web:
+    security:
+      authentication:
+        jwt:
+          secret: desafio-itau
+
