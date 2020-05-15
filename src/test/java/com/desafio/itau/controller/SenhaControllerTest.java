@@ -13,6 +13,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+/**
+ * Classe de teste para o serviço de validação de senha
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ItauApplication.class)
 public class SenhaControllerTest {
@@ -84,6 +87,18 @@ public class SenhaControllerTest {
     public void semSizeMinimo() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/senha/isValid")
                 .param("senha", "Abp9!fok"))
+                .andExpect(MockMvcResultMatchers.content().string("false"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    /**
+     * Cenario em que o Caracter é duplicado
+     * @throws Exception
+     */
+    @Test
+    public void caracterDuplicado() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/senha/isValid")
+                .param("senha", "AbTp9!foo"))
                 .andExpect(MockMvcResultMatchers.content().string("false"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }

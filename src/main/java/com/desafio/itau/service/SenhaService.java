@@ -16,19 +16,16 @@ public class SenhaService {
      * @return true se senha for valida, false se senha não válida
      */
     public static boolean isValid(final String senha) {
-        Pattern regex = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{9,}$");
+        Pattern erMatcher = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{9,}$");
+        Pattern erFind = Pattern.compile("(([A-Za-z \\d])(\\2)+)");
 
         if (senha == null || senha.isEmpty()) {
             return false;
         }
-        else if(!regex.matcher(senha).matches()){
+        else if(erFind.matcher(senha).find() || !erMatcher.matcher(senha).matches()){
             return false;
         }else
             return  true;
     }
 
-    public static void main(String[] args) {
-        boolean res =isValid("AbTp9!foo");
-        System.out.printf(" resposta %s", res);
-    }
 }

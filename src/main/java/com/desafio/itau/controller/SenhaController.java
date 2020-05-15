@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * Classe responsavel pelo controle de acesso
+ * Classe responsavel pelo controle de acesso, endpoint da api
  */
 @RestController
 @RequestMapping("senha")
